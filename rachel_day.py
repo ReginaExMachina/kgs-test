@@ -145,29 +145,21 @@ def parse_file(file_name):
     answers = []
     answer_numbers = []
 
-    answer_grp = []
-    answer_no_grp = []
-
     with open(file_name) as file:
         line = file.readline()
         while line:
             line = file.readline()
 
-            try:
+            if "." in line:
                 temp = line.split(".", 1)
-                answer_grp.append(temp[1].strip())
-                answer_no_grp.append(temp[0])
 
                 if "?" in line:
                     questions.append(temp[1].strip())
                     question_numbers.append(temp[0])
-                    answers.append(answer_grp)
-                    answer_numbers.append(answer_no_grp)
 
-                    del answer_grp[:]
-                    del answer_no_grp[:]
-            except:
-                pass
+                else:
+                    answers.append(temp[1].strip())
+                    answer_numbers.append(temp[0])
 
 
     file_vars = dict()
